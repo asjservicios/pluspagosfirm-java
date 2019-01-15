@@ -4,7 +4,6 @@ import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.Security;
-import java.util.Base64;
 
 public class AESEncrypter {
 
@@ -31,7 +30,7 @@ public class AESEncrypter {
             System.arraycopy(iv, 0, combinedIvCt, 0, iv.length);
             System.arraycopy(encrypted, 0, combinedIvCt, iv.length, encrypted.length);
 
-            return Base64.getEncoder().encodeToString(combinedIvCt);
+            return Base64.encodeToString(combinedIvCt, Base64.NO_WRAP);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,7 +51,7 @@ public class AESEncrypter {
             SecretKey key = new SecretKeySpec(ba, "AES");
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 
-            byte[] cipherTextCombined = Base64.getDecoder().decode(plainText);
+            byte[] cipherTextCombined = Base64.decode(plainText, 0);
             byte[] iv = new byte[cipher.getBlockSize()];
             byte[] cipherText = new byte[cipherTextCombined.length - iv.length];
             System.arraycopy(cipherTextCombined, 0, iv, 0, iv.length);
