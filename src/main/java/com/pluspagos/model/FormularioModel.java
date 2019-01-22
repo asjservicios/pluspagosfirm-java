@@ -1,8 +1,8 @@
-package com.pluspago.model;
+package com.pluspagos.model;
 
 import java.util.List;
 
-import com.pluspago.AESEncrypter;
+import com.pluspagos.AESEncrypter;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

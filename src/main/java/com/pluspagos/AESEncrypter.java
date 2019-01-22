@@ -1,4 +1,4 @@
-package com.pluspago;
+package com.pluspagos;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;

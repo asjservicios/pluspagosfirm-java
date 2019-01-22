@@ -1,4 +1,4 @@
-package com.pluspago;
+package com.pluspagos;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;

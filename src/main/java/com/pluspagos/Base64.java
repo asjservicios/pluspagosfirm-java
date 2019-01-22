@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pluspago;
+package com.pluspagos;
 
 import java.io.UnsupportedEncodingException;
 
