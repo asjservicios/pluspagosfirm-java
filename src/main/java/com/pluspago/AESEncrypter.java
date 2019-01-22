@@ -30,7 +30,7 @@ public class AESEncrypter {
             System.arraycopy(iv, 0, combinedIvCt, 0, iv.length);
             System.arraycopy(encrypted, 0, combinedIvCt, iv.length, encrypted.length);
 
-            return Base64.encodeToString(combinedIvCt, Base64.NO_WRAP);
+            return com.pluspago.Base64.encodeToString(combinedIvCt, com.pluspago.Base64.NO_WRAP);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,7 +51,7 @@ public class AESEncrypter {
             SecretKey key = new SecretKeySpec(ba, "AES");
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
 
-            byte[] cipherTextCombined = Base64.decode(plainText, 0);
+            byte[] cipherTextCombined = com.pluspago.Base64.decode(plainText, 0);
             byte[] iv = new byte[cipher.getBlockSize()];
             byte[] cipherText = new byte[cipherTextCombined.length - iv.length];
             System.arraycopy(cipherTextCombined, 0, iv, 0, iv.length);
