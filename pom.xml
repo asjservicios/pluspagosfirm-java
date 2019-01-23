@@ -5,35 +5,75 @@
 
     <groupId>com.pluspagos</groupId>
     <artifactId>firm</artifactId>
-    <version>0.4</version>
+    <version>0.6-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>CodeFirm</name>
-    <description>Project to code signature</description>
+    <name>PlusPagosFirm-Java</name>
+    <description>Libreria de encriptacion de PlusPagos para Java y Android</description>
 
-    <!-- <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.0.3.RELEASE</version>
-        <relativePath/>
-    </parent> -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
     </properties>
-    <!-- <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.10</version>
-        </dependency>
-    </dependencies> -->
     <build>
-
+        <plugins>
+            <plugin>
+            <artifactId>maven-release-plugin</artifactId>
+            <version>2.4.1</version>
+            <configuration>
+                <useReleaseProfile>false</useReleaseProfile>
+                <releaseProfiles>release</releaseProfiles>
+                <autoVersionSubmodules>true</autoVersionSubmodules>
+            </configuration>
+            </plugin>
+        </plugins>
     </build>
+
+    <scm>
+        <connection>scm:git:https://github.com/asjservicios/pluspagosfirm-java.git</connection>
+        <developerConnection>scm:git:git@github.com:asjservicios/pluspagosfirm-java.git</developerConnection>
+        <url>https://github.com/asjservicios/pluspagosfirm-java</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-asjservicios-PlusPagosFirm-Java</id>
+            <name>asjservicios-PlusPagosFirm-Java</name>
+            <url>https://api.bintray.com/maven/asjservicios/PlusPagosFirm-Java/[PACKAGE_NAME]/;publish=1</url>
+        </repository>
+    </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+            <plugins>
+                <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                    <id>attach-sources</id>
+                    <goals>
+                        <goal>jar</goal>
+                    </goals>
+                    </execution>
+                </executions>
+                </plugin>
+                <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                    <id>attach-javadocs</id>
+                    <goals>
+                        <goal>jar</goal>
+                    </goals>
+                    </execution>
+                </executions>
+                </plugin>
+            </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
