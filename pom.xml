@@ -30,7 +30,7 @@
     </build>
 
     <scm>
-        <connection>scm:git:https://github.com/asjservicios/pluspagosfirm-java.git</connection>
+        <connection>scm:git:https://asjservicios:507andinas@github.com/asjservicios/pluspagosfirm-java.git</connection>
         <developerConnection>scm:git:git@github.com:asjservicios/pluspagosfirm-java.git</developerConnection>
         <url>https://github.com/asjservicios/pluspagosfirm-java</url>
         <tag>firm-0.7.3</tag>
