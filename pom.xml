@@ -4,7 +4,7 @@
 
     <groupId>com.pluspagos</groupId>
     <artifactId>firm</artifactId>
-    <version>0.7.5-SNAPSHOT</version>
+    <version>firm-1.0.0</version>
     <packaging>jar</packaging>
 
     <name>PlusPagosFirm-Java</name>
@@ -13,18 +13,42 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.6</java.version>
+        <!-- Java 8 es el minimo requerido para compatibilidad con dispositivos Android
+             mas antiguos; permite usar java.util.Base64 nativo y AES/GCM sin dependencias
+             adicionales. Si no se necesita soportar Android legacy, se recomienda subir
+             a una LTS moderna (11/17/21). -->
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <junit.version>4.13.2</junit.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
-            <artifactId>maven-release-plugin</artifactId>
-            <version>2.5</version>
-            <configuration>
-                <useReleaseProfile>false</useReleaseProfile>
-                <releaseProfiles>release</releaseProfiles>
-                <autoVersionSubmodules>true</autoVersionSubmodules>
-            </configuration>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.13.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -36,13 +60,12 @@
         <tag>HEAD</tag>
     </scm>
 
-    <distributionManagement>
-        <repository>
-            <id>bintray-asjservicios-PlusPagosFirm-Java</id>
-            <name>asjservicios-PlusPagosFirm-Java</name>
-            <url>https://api.bintray.com/maven/asjservicios/PlusPagosFirm-Java/com.pluspagos.firm</url>
-        </repository>
-    </distributionManagement>
+    <!--
+        Distribucion del artefacto: no se requiere configuracion de distributionManagement.
+        La libreria se distribuye via JitPack (https://jitpack.io), que construye el .jar
+        directamente desde los tags/releases de este repositorio de GitHub. No requiere
+        `mvn deploy` ni autenticacion para los comercios que la consumen.
+    -->
 
     <profiles>
         <profile>
